@@ -16,6 +16,7 @@ def rulehandler():
     issue = {}
     if request.method == 'POST':
         issue = request.get_json()
+        print("debug: ", issue)
     else:
         pass
 
@@ -26,12 +27,15 @@ def rulehandler():
     # TODO: Change rules for different communities here. Also, you can defined rules in json file.
     issueOrg = issue['repoInfo']['org']
     issueRepo = issue['repoInfo']['repo']
-
+    print("debug: ", issueOrg)
     community_assignee = open("config/community_assignee.json", 'r', encoding = 'utf-8')
     community_assignee = json.load(community_assignee)
+    print("debug: ", community_assignee.keys())
     if issueOrg in community_assignee.keys():
+        print("debug: 11111111111111111")
         community_assignee_list = community_assignee[issueOrg]
     else:
+        print("debug: 22222222222222222")
         community_assignee_list = community_assignee["other"]
 
     # community_assignee_list_test = ['clement_li']
